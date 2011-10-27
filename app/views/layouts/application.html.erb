@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Webengineering</title>
-  <%= stylesheet_link_tag    "application" %>
+  <title>WaveCloud</title>
+  <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
 
-<%= yield %>
+    
+    <%= render 'layouts/header' %>
+    <%= render 'layouts/player' %>
+    <%= render 'layouts/menu' %>
+    <%= render 'layouts/actualPlaylist' %>
 
+    <div class="content">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+
+      <%= yield %>
+
+    </div>
+    <%= debug(params) if Rails.env.development? %>
+  </div>
 </body>
 </html>

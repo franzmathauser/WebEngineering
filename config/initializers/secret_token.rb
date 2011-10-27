@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Webengineering::Application.config.secret_token = '81cc29fdf1ae642336898d9c6eebbd6553422ba57d878fc67e6e1f31ae61d8c283a08c73f321fb7cd088cc3f091d6400d616bd060b9e2adb4539db2e87e951d9'
+WaveCloud::Application.config.secret_token = 'a747e5d1f821837784e6d00353bf5d4294830c7d5061e1616a4bcaa92f05f80e693230d353d36733dd542454622db06864d7593c1e1828079a83baeb8d10a332'

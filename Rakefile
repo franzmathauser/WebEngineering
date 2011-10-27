@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Webengineering::Application.load_tasks
+WaveCloud::Application.load_tasks

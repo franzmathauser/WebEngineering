@@ -5,3 +5,86 @@
  *= require_self
  *= require_tree . 
 */
+
+/*HEADER*/
+
+header {
+  background-color: #0000aa;
+}
+
+header img {
+  padding: 1em;
+  background: #fff;
+}
+
+/*NAVIGATION*/
+
+nav {
+    float: right;
+    margin: 1em;
+    background: white;  
+}
+
+nav ul {
+    margin: 0;
+    padding:0;  
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0.5em;
+}
+
+/*PLAYER*/
+
+.player {
+    height: 6em;
+    background: #bbbbbb;
+}
+
+/*MENU*/
+
+.menu {
+    float: left;
+    width: 7em;
+    background: #dddddd;
+}
+
+.menu ul {
+    padding: 0;
+    margin: 1em;
+}
+.menu ul li {
+    padding: 0;
+    margin: 0.3em;
+}
+
+/*ACTUAL PLAYLIST*/
+
+.actualPlaylist {
+    float: right;
+    width: 7em;
+    background: #dddddd;
+}
+
+.actualPlaylist ul li {
+    list-style-type: none;
+    margin: 0.3em;
+}
+
+/*CONTENT*/
+
+.content {
+    margin-left: 8em;
+}
+
+/*ROUND CORNERS*/
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+/*LINKS*/

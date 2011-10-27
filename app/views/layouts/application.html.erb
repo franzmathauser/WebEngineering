@@ -11,9 +11,11 @@
 
     
     <%= render 'layouts/header' %>
-    <%= render 'layouts/player' %>
-    <%= render 'layouts/menu' %>
-    <%= render 'layouts/actualPlaylist' %>
+    <% if signed_in? %>
+      <%= render 'layouts/player' %>
+      <%= render 'layouts/menu' %>
+      <%= render 'layouts/actualPlaylist' %>
+    <% end %>
 
     <div class="content">
       <% flash.each do |key, value| %>

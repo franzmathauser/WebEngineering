@@ -1,7 +1,8 @@
 class PlayerController < ApplicationController
   def index
      path=""
-     @audio = Audio.find(params[:id])
+     @useraudio = UserAudio.find(params[:id])
+     @audio = @useraudio.audio
      @audio_path = @audio.id.to_s+".mp3"
      @audioimage_path = @audio.id.to_s+".png"
   end

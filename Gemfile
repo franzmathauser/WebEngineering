@@ -7,6 +7,12 @@ gem 'rails', '3.1.1'
 
 gem 'mysql2'
 
+gem 'rack', '1.3.3'
+
+gem 'rmagick'
+
+gem 'annotate',:git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
+
 
 # Gems used only for assets and not required
 # in production environments by default.

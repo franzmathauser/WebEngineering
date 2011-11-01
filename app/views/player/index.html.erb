@@ -1,0 +1,38 @@
+<h1><%= @audio.filehash %></h1>
+
+<div style="margin:auto;border:1px solid; width:650px; height:145px;padding-top:5px; background-color:#efefef;" class="round">
+<audio id="audioplayer" controls autoplay preload style="width:650px;">
+  <source src="<%=asset_path @audio_path%>" type="audio/mp3" />
+  Your browser does not support the audio element.
+</audio>
+
+<div id="audioimagecontainer" class="round" style="position: relative;">
+ <canvas id="layer1" width="0%" height="100" 
+   style="position: absolute; left: 0; top: 0; z-index: 1; background-color:red"></canvas>
+ <canvas id="layer2" width="650" height="100" 
+   style="position: absolute; left: 0; top: 0; z-index: 0; background-color:#aaaaaa"></canvas>
+
+<canvas id="layer2" width="650" height="100" 
+   style="position: absolute; left: 0; top: 0; z-index: 2;background-image:url('<%= audioimage %>')"></canvas>
+</div>
+<div style="clear:both;" />
+</div>
+<script language="Javascript">
+
+var audioElement = document.getElementById('audioplayer')
+var out = document.getElementById('out');
+var canvasTime = document.getElementById('layer1');
+var audioimagecontainer = document.getElementById('audioimagecontainer');
+
+setInterval("renderCanvasMonitor()", 500);
+ 
+function renderCanvasMonitor () {
+  
+    audioLength = audioElement.duration;
+    proz = (audioElement.currentTime/audioLength) + 0.002;
+    canvas_size = 650 * proz;
+    canvasTime.width = canvas_size;
+
+}
+</script>
+

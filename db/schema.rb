@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111027085647) do
+ActiveRecord::Schema.define(:version => 20111101170752) do
+
+  create_table "audios", :force => true do |t|
+    t.string   "filehash"
+    t.boolean  "converted"
+    t.boolean  "imageprocessed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_audios", :force => true do |t|
+    t.string   "name"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "album"
+    t.integer  "duration"
+    t.integer  "audio_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "nickname"

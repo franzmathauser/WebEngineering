@@ -1,12 +1,11 @@
 <%
-@audios.each do |audio|
+@useraudios.each do |useraudio|
 %>
 
-<%=link_to audio.filehash, :controller => "player", :action => "index", :id => audio %> <br />
+<%=link_to useraudio.name, :controller => "player", :action => "index", :id => useraudio %> <br />
 
 
 <%
 end
 %>
 
-test: <%= current_user.nickname %>

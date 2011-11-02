@@ -19,6 +19,9 @@ WaveCloud::Application.routes.draw do
 
   match "audiolist", :to => 'player#list'
 
+  get "audio_image_processor/image_processor"
+  get "audio_converter/convert_new_audiofiles"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

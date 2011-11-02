@@ -1,0 +1,12 @@
+#!/bin/sh
+
+while [ true ]
+do
+  sleep 5
+  wget -q -nv -o /dev/null http://localhost:3000/audio_converter/convert_new_audiofiles 
+  wget -q -nv -o /dev/null http://localhost:3000/audio_image_processor/image_processor 
+
+ rm image_processor*
+ rm convert_new_audiofiles*
+
+done

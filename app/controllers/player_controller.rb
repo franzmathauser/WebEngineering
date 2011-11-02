@@ -1,4 +1,6 @@
 class PlayerController < ApplicationController
+  before_filter :loggedon
+
   def index
      path=""
      @song = Song.where(:user_id=>current_user, :id=>params[:id]).first

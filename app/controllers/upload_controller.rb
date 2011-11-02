@@ -1,4 +1,6 @@
 class UploadController < ApplicationController
+  before_filter :loggedon
+
   def index
      #render :file => 'app\views\upload\uploadfile.rhtml'
   end
@@ -36,5 +38,7 @@ class UploadController < ApplicationController
     redirect_to :controller=>'player', :action => 'index', :id => song.id
 
   end
+
+  
 
 end

@@ -1,8 +1,8 @@
 <%
-@useraudios.each do |useraudio|
+@songs.each do |song|
 %>
 
-<%=link_to useraudio.name, :controller => "player", :action => "index", :id => useraudio %> <br />
+<%=link_to song.name, :controller => "player", :action => "index", :id => song %> <br />
 
 
 <%

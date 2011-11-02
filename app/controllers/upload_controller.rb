@@ -9,8 +9,8 @@ class UploadController < ApplicationController
     file_ext = file_name.downcase[-3,3]
 
     uploaded = Audio.new(:filehash=>file_name, :converted=>0, :imageprocessed=>0)
-    useraudio = UserAudio.new(:user=>current_user, :audio=>uploaded, :name=>file_name)
-    useraudio.save
+    song = Song.new(:user=>current_user, :audio=>uploaded, :name=>file_name)
+    song.save
 
     newname=uploaded.id.to_s+"."+file_ext
 
@@ -26,14 +26,14 @@ class UploadController < ApplicationController
       uploaded.save    
      else
       uploaded.delete
-      useraudio.audio = samefile 
-      useraudio.save
+      song.audio = samefile 
+      song.save
       File.delete(@post)
     end
     
     #render :text => "File has been uploaded successfully"
 
-    redirect_to :controller=>'player', :action => 'index', :id => useraudio.id
+    redirect_to :controller=>'player', :action => 'index', :id => song.id
 
   end
 

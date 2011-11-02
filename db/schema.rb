@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111101170752) do
+ActiveRecord::Schema.define(:version => 20111102131351) do
 
   create_table "audios", :force => true do |t|
     t.string   "filehash"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20111101170752) do
     t.datetime "updated_at"
   end
 
-  create_table "user_audios", :force => true do |t|
+  create_table "songs", :force => true do |t|
     t.string   "name"
     t.string   "title"
     t.string   "artist"

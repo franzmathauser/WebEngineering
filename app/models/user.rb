@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-   has_many :user_audios
+   has_many :songs
   
    attr_accessor :password
   attr_accessible :nickname, :email, :password, :password_confirmation

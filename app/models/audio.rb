@@ -1,3 +1,3 @@
 class Audio < ActiveRecord::Base
-  has_many :user_audios
+  has_many :songs
 end

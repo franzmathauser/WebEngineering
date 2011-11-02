@@ -3,8 +3,9 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   private
-    def loggedon
-      if !signed_in? then
+    def require_login
+      unless signed_in?
+        flash[:error] = "You must be logged in to access this section!"
         redirect_to :root
       end
     end

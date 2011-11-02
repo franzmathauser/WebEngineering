@@ -88,3 +88,12 @@ nav ul li {
 }
 
 /*LINKS*/
+
+/*FLASH*/
+.error {
+  color:red;
+}
+
+.clear{
+  clear:both;
+}

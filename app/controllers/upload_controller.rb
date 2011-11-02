@@ -1,5 +1,5 @@
 class UploadController < ApplicationController
-  before_filter :loggedon
+  before_filter :require_login
 
   def index
      #render :file => 'app\views\upload\uploadfile.rhtml'
@@ -11,8 +11,8 @@ class UploadController < ApplicationController
     file_ext = file_name.downcase[-3,3]
 
     uploaded = Audio.new(:filehash=>file_name, :converted=>0, :imageprocessed=>0)
-    song = Song.new(:user=>current_user, :audio=>uploaded, :name=>file_name)
-    song.save
+    @song = Song.new(:user=>current_user, :audio=>uploaded, :name=>file_name)
+    @song.save
 
     newname=uploaded.id.to_s+"."+file_ext
 
@@ -28,14 +28,14 @@ class UploadController < ApplicationController
       uploaded.save    
      else
       uploaded.delete
-      song.audio = samefile 
-      song.save
+      @song.audio = samefile 
+      @song.save
       File.delete(@post)
     end
     
     #render :text => "File has been uploaded successfully"
 
-    redirect_to :controller=>'player', :action => 'index', :id => song.id
+    redirect_to @song
 
   end
 

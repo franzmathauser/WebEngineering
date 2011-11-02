@@ -1,4 +1,4 @@
-module PlayerHelper
+module SongsHelper
 
   # Return a wave image
   def audioimage

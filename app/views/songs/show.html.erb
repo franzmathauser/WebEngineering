@@ -1,4 +1,4 @@
-<h1><%= @song.name %></h1>
+<h1>Audioplayer <%= @song.name %></h1>
 
 <div style="margin:auto;border:1px solid; width:650px; height:145px;padding-top:5px; background-color:#efefef;" class="round">
 <audio id="audioplayer" controls autoplay preload style="width:650px;">
@@ -17,8 +17,20 @@
 </div>
 <div style="clear:both;" />
 </div>
-<script language="Javascript">
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<%= render 'layouts/metainfos' %>
 
+<%= link_to "Zurück", :back %>
+<%= link_to "Edit", :edit_song %>
+<%= link_to 'Delete', song_path(@song),
+            :confirm => 'Are you sure?', :method => :delete %>
+<script language="Javascript">
 var audioElement = document.getElementById('audioplayer')
 var out = document.getElementById('out');
 var canvasTime = document.getElementById('layer1');
@@ -35,4 +47,3 @@ function renderCanvasMonitor () {
 
 }
 </script>
-

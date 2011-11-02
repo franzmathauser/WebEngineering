@@ -1,11 +1,19 @@
+
 WaveCloud::Application.routes.draw do
   
+  #get "songs/new"
+  #get "songs/show"
+  #get "songs/create"
+  #get "songs/delete"
+  #get "songs/update"
+
   get "audio/index"
   get "audio/new"
 
   root :to => 'sessions#new'
   
   resources :users
+  resources :songs, :only =>[:index, :destroy, :edit, :update, :show]
   resources :sessions, :only => [:new, :create, :destroy]
   
   match '/signup', :to => 'users#new'
@@ -14,10 +22,6 @@ WaveCloud::Application.routes.draw do
 
   match "upload", :to => 'upload#index'
   post "upload/uploadFile"
-
-  match "/player/:id", :to => 'player#index'
-
-  match "audiolist", :to => 'player#list'
 
   get "audio_image_processor/image_processor"
   get "audio_converter/convert_new_audiofiles"

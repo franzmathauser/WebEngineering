@@ -1,0 +1,14 @@
+<div class="round comment" from="<%= song_comment.from_duration %>" to="<%= song_comment.to_duration %>">
+<p>
+  <b>Commenter:</b>
+  <%= song_comment.user.nickname %>
+<br />
+ <b>Comment:</b>
+  <%= song_comment.body %>
+<br />
+<b>from:</b>
+  <%= song_comment.from_duration %>
+<b>to:</b>
+  <%= song_comment.to_duration %>
+</p>
+</div>

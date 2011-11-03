@@ -13,7 +13,9 @@ WaveCloud::Application.routes.draw do
   root :to => 'sessions#new'
   
   resources :users
-  resources :songs, :only =>[:index, :destroy, :edit, :update, :show]
+  resources :songs, :only =>[:index, :destroy, :edit, :update, :show] do
+    resources :song_comments
+  end
   resources :sessions, :only => [:new, :create, :destroy]
   
   match '/signup', :to => 'users#new'

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
    has_many :songs
+   has_many :song_comments
   
    attr_accessor :password
   attr_accessible :nickname, :email, :password, :password_confirmation

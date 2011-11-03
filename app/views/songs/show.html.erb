@@ -1,7 +1,7 @@
 <h1>Audioplayer <%= @song.name %></h1>
-
+<!-- autoplay -->
 <div style="margin:auto;border:1px solid; width:650px; height:145px;padding-top:5px; background-color:#efefef;" class="round">
-<audio id="audioplayer" controls autoplay preload style="width:650px;">
+<audio id="audioplayer" controls  preload style="width:650px;">
   <source src="<%=asset_path @audio_path%>" type="audio/mp3" />
   Your browser does not support the audio element.
 </audio>
@@ -13,7 +13,10 @@
    style="position: absolute; left: 0; top: 0; z-index: 0; background-color:#aaaaaa"></canvas>
 
 <canvas id="layer2" width="650" height="100" 
-   style="position: absolute; left: 0; top: 0; z-index: 2;background-image:url('<%= audioimage %>')"></canvas>
+   style="position: absolute; left: 0; top: 0; z-index: 3; background-image:url('<%= audioimage %>')"></canvas>
+
+<canvas id="layer3"
+   style="position: absolute; left: 0; top: 0; z-index: 2; width:0px; height:100px; background-color:#29F716; opacity:0.4;"></canvas>
 </div>
 <div style="clear:both;" />
 </div>
@@ -21,15 +24,23 @@
 <br />
 <br />
 <br />
-<br />
-<br />
-<br />
-<%= render 'layouts/metainfos' %>
 
+<%= render 'songs/metainfos' %>
+<br />
 <%= link_to "Zurück", :back %>
 <%= link_to "Edit", :edit_song %>
 <%= link_to 'Delete', song_path(@song),
             :confirm => 'Are you sure?', :method => :delete %>
+<% if @song.song_comments.length > 0 then %>
+<h2>Comments</h2>
+<%= render @song.song_comments %>
+<% end %>
+
+<div class="new_comment_container">
+<h2>Add a comment:</h2>
+<%= render "song_comments/form" %>
+</div>
+
 <script language="Javascript">
 var audioElement = document.getElementById('audioplayer')
 var out = document.getElementById('out');
@@ -37,13 +48,66 @@ var canvasTime = document.getElementById('layer1');
 var audioimagecontainer = document.getElementById('audioimagecontainer');
 
 setInterval("renderCanvasMonitor()", 500);
- 
+var i = 0;
 function renderCanvasMonitor () {
   
     audioLength = audioElement.duration;
     proz = (audioElement.currentTime/audioLength) + 0.002;
     canvas_size = 650 * proz;
     canvasTime.width = canvas_size;
+    
+    $(".comment").each(function(index) {
+    // alert($(this).attr('from'));
+    // alert(audioElement.currentTime + "," + parseFloat($(this).attr('from')));
+       
+    if (audioElement.currentTime >= parseFloat($(this).attr('from')) &&
+        audioElement.currentTime <= parseFloat($(this).attr('to')) ){
+          $(this).css('background-color','#29F716');
+    } else {
+       $(this).css('background-color','');
+    }
+
+    });
+
 
 }
+
+
 </script>
+
+<script type="text/javascript">
+var from = 0;
+$("#audioimagecontainer").mousedown(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  from = mouseX/650
+  $('#song_comment_from_duration').val(Math.round(audioElement.duration*from*100)/100);
+  $('#layer3').css('margin-left',650*from);
+  $('#layer3').css('width',1);
+
+  $("#audioimagecontainer").mousemove(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var to = mouseX/650
+  diff = to-from
+  $('#layer3').css('width',650*diff);
+  });
+
+});
+
+
+$("#audioimagecontainer").mouseup(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var to = mouseX/650
+  diff = to-from
+  $('#song_comment_to_duration').val(Math.round(audioElement.duration*to*100)/100);
+  $('#layer3').css('width',650*diff);
+
+  $("#audioimagecontainer").unbind('mousemove');
+
+
+      $('.new_comment_container').fadeIn('slow', function() {
+        // Animation complete
+      });
+});
+
+</script>
+

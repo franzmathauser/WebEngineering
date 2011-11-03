@@ -1,0 +1,19 @@
+// Place all the styles related to the SongComments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.field textarea {
+ height:5em;
+ width:100%;
+}
+
+/* SONGCOMMENTS */
+.new_comment_container{
+  display:none;
+}
+
+.comment {
+ padding:0.2em;
+ background-color:#cccccc;
+ margin-bottom:0.5em;
+}

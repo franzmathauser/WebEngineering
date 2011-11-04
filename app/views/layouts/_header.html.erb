@@ -1,5 +1,6 @@
-<Header>
-  <%= link_to logo, '#' %>
+<header>
+ <% logo = image_tag("logo.png", :alt => "Sample App", :class => "round") %>
+<%= logo %>
   <nav class="round">
     <ul>
       <li><%= link_to "Home", '#' %></li>
@@ -14,4 +15,4 @@
       <% end %>
     </ul>
   </nav>
-</Header>
+</header>

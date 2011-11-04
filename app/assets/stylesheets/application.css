@@ -1,15 +1,15 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
-*/
+.container {
+  width: 950px;
+  background: #cccccc;
+  padding:0.5em;
+}
 
-/*HEADER*/
+body {
+  background: #eeeeee;
+}
 
 header {
-  background-color: #0000aa;
+  padding-top: 20px;
 }
 
 header img {
@@ -17,69 +17,84 @@ header img {
   background: #fff;
 }
 
-/*NAVIGATION*/
+section {
+  font-size: 120%;
+  padding: 1em;
+  background: #ccc;
+}
+
+section h1 {
+  font-size: 200%;
+}
+
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
+
+/* Navigation */
 
 nav {
-    float: right;
-    margin: 1em;
-    background: white;  
+  float: right;
+}
+
+nav {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
 }
 
 nav ul {
-    margin: 0;
-    padding:0;  
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
-    list-style-type: none;
-    display: inline-block;
-    margin: 0.5em;
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
 }
 
-/*PLAYER*/
-
-.player {
-    height: 6em;
-    background: #bbbbbb;
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
 }
 
-/*MENU*/
-
-.menu {
-    float: left;
-    width: 7em;
-    background: #dddddd;
+nav ul li a:visited {
+  color: #09c;
 }
 
-.menu ul {
-    padding: 0;
-    margin: 1em;
-}
-.menu ul li {
-    padding: 0;
-    margin: 0.3em;
+nav ul li a:hover {
+  text-decoration: underline;
 }
 
-/*ACTUAL PLAYLIST*/
+/* Sign up button */
 
-.actualPlaylist {
-    float: right;
-    width: 7em;
-    background: #dddddd;
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
 }
 
-.actualPlaylist ul li {
-    list-style-type: none;
-    margin: 0.3em;
-}
-
-/*CONTENT*/
-
-.content {
-    margin-left: 8em;
-}
-
-/*ROUND CORNERS*/
+/* Round corners */
 
 .round {
   -moz-border-radius:    10px;
@@ -87,13 +102,47 @@ nav ul li {
   border-radius:         10px;
 }
 
-/*LINKS*/
-
-/*FLASH*/
-.error {
-  color:red;
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.clear{
-  clear:both;
+footer nav {
+  float: none;
+}
+
+.clear {
+clear:both;
+}
+
+.usermenu {
+  background-color:#ffffff;
+}
+
+.playlist {
+ background-color:#ffffff;
+}
+
+.songmeta {
+ background-color:orange;
+ padding-left:0.2em;
+}
+
+.songmeta .metainfo{
+  float:left;
+  padding-right:1em;
+}
+
+.comment {
+ background-color:#ffffff;
+}
+.songmenu {
+  background-color:#fff;
+}
+
+.new_comment_container{
+ display:none;
 }

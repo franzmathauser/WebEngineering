@@ -97,6 +97,10 @@ nav ul li {
   color:red;
 }
 
+.success {
+  color: green;
+}
+
 .clear{
   clear:both;
 }

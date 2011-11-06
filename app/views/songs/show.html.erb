@@ -26,12 +26,16 @@
 
 
 <%= render 'songs/metainfos' %>
-<div class="round span-4 last">
+<div class="round span-4 last ">
 <%= link_to "Zurück", :back %>
 <%= link_to "Edit", :edit_song %>
 <%= link_to 'Delete', song_path(@song),
             :confirm => 'Are you sure?', :method => :delete %>
 </div>
+
+<div class="clear"></div>
+
+
 <% if @song.song_comments.length > 0 then %>
 <h2>Comments</h2>
 <%= render @song.song_comments %>

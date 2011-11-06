@@ -1,0 +1,20 @@
+<div class="player">
+<audio id="audioplayer" controls  preload style="width:650px;">
+  <source src="<%=asset_path @audio_path%>" type="audio/mp3" />
+  Your browser does not support the audio element.
+</audio>
+<% unless @audio.nil? %>
+<div id="audioimagecontainer" class="round" style="position: relative;">
+ <canvas id="layer1" width="0%" height="100" 
+   style="position: absolute; left: 0; top: 0; z-index: 1; background-color:red"></canvas>
+ <canvas id="layer2" width="650" height="100" 
+   style="position: absolute; left: 0; top: 0; z-index: 0; background-color:#aaaaaa"></canvas>
+
+<canvas id="layer2" width="650" height="100" 
+   style="position: absolute; left: 0; top: 0; z-index: 3; background-image:url('<%= audioimage %>')"></canvas>
+
+<canvas id="layer3"
+   style="position: absolute; left: 0; top: 0; z-index: 2; width:0px; height:100px; background-color:#29F716; opacity:0.4;"></canvas>
+</div>
+<% end %>
+</div>

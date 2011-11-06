@@ -1,0 +1,12 @@
+<div class="metainfoContainer round">
+  <% if !@song.title.nil? && !@song.title.empty? %>
+    <div class="metainfo">Title: <%= @song.title %></div>
+  <% end %>
+  <% if !@song.artist.nil? && !@song.artist.empty? %>
+    <div class="metainfo">Artist: <%= @song.artist %></div>
+  <% end %>
+  <% if !@song.album.nil? && !@song.album.empty? %>
+    <div class="metainfo">Album: <%= @song.album %></div>
+  <% end %>
+  <div class="clear"></div>
+</div>

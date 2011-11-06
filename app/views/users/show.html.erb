@@ -2,5 +2,8 @@
   <%= @user.nickname %>
 </h1>
 
-<strong>Name</strong> <%= @user.nickname %><br />
-<strong>URL</strong>  <%= link_to user_path(@user), @user %>
+<ul>
+<li>Nickname: <%= @user.nickname %></li>
+<li>Email: <%= @user.email %></li>
+<li>URL <%= link_to user_path(@user), @user %></li>
+<li><%= link_to "Edit", edit_user_path(current_user) %></li>

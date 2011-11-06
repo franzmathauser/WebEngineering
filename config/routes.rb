@@ -1,13 +1,32 @@
+
 WaveCloud::Application.routes.draw do
   
+  #get "songs/new"
+  #get "songs/show"
+  #get "songs/create"
+  #get "songs/delete"
+  #get "songs/update"
+
+  get "audio/index"
+  get "audio/new"
+
   root :to => 'sessions#new'
   
   resources :users
+  resources :songs, :only =>[:index, :destroy, :edit, :update, :show] do
+    resources :song_comments
+  end
   resources :sessions, :only => [:new, :create, :destroy]
   
   match '/signup', :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+
+  match "upload", :to => 'upload#index'
+  post "upload/uploadFile"
+
+  get "audio_image_processor/image_processor"
+  get "audio_converter/convert_new_audiofiles"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

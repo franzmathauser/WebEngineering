@@ -39,8 +39,11 @@ nav ul li {
 /*PLAYER*/
 
 .player {
-    height: 6em;
-    background: #bbbbbb;
+    margin:auto;
+    border:1px solid;
+    height:10em;
+    padding-top:0.1em;
+    background-color:#efefef;
 }
 
 /*MENU*/
@@ -88,3 +91,16 @@ nav ul li {
 }
 
 /*LINKS*/
+
+/*FLASH*/
+.error {
+  color:red;
+}
+
+.success {
+  color: green;
+}
+
+.clear{
+  clear:both;
+}

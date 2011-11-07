@@ -1,15 +1,24 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
-*/
+.container {
+  width: 950px;
+}
 
-/*HEADER*/
+body {
+  background: #000000;
+}
 
 header {
-  background-color: #0000aa;
+  padding-top: 20px;
+}
+
+header nav {
+  margin-top:2em;
+  margin-right:2em;
+}
+
+.bg_header{
+  background-image: url(bg.jpg);
+  width:100%;
+  height:23em;
 }
 
 header img {
@@ -17,26 +26,30 @@ header img {
   background: #fff;
 }
 
-/*NAVIGATION*/
-
-nav {
-    float: right;
-    margin: 1em;
-    background: white;  
+section {
+  background: #ccc;
+  padding:0.4em;
 }
 
-nav ul {
-    margin: 0;
-    padding:0;  
+section h1 {
+  font-size: 200%;
 }
 
-nav ul li {
-    list-style-type: none;
-    display: inline-block;
-    margin: 0.5em;
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
 }
 
-/*PLAYER*/
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
 
 .player {
     margin:auto;
@@ -46,43 +59,43 @@ nav ul li {
     background-color:#efefef;
 }
 
-/*MENU*/
+/* Navigation */
 
-.menu {
-    float: left;
-    width: 7em;
-    background: #dddddd;
+nav {
+  float: right;
 }
 
-.menu ul {
-    padding: 0;
-    margin: 1em;
-}
-.menu ul li {
-    padding: 0;
-    margin: 0.3em;
+nav {
+  background-color: white;
+  padding: 0 0.7em;
+  white-space: nowrap;
 }
 
-/*ACTUAL PLAYLIST*/
-
-.actualPlaylist {
-    float: right;
-    width: 7em;
-    background: #dddddd;
+nav ul {
+  margin: 0;
+  padding: 0;
 }
 
-.actualPlaylist ul li {
-    list-style-type: none;
-    margin: 0.3em;
+nav ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 0.2em 0;
 }
 
-/*CONTENT*/
-
-.content {
-    margin-left: 8em;
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
 }
 
-/*ROUND CORNERS*/
+nav ul li a:visited {
+  color: #09c;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Round corners */
 
 .round {
   -moz-border-radius:    10px;
@@ -90,17 +103,105 @@ nav ul li {
   border-radius:         10px;
 }
 
-/*LINKS*/
+.round-left {
+  -moz-border-top-left-radius:    10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
 
-/*FLASH*/
-.error {
-  color:red;
+  -moz-border-bottom-left-radius:    10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
+.round-right {
+  -moz-border-top-right-radius:    10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+
+  -moz-border-bottom-right-radius:    10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer nav {
+  float: none;
+}
+
+.clear {
+clear:both;
+}
+
+.usermenu {
+  background-color:#ffffff;
+}
+
+.usermenu ul li{
+   list-style-type:none;
+}
+
+.playlist {
+ background-color:#ffffff;
+}
+
+.songmeta {
+ background-color:orange;
+ padding-left:0.2em;
+}
+
+.songmeta .metainfo{
+  float:left;
+  padding-right:1em;
+}
+
+
+.songmenu {
+  background-color:#fff;
+}
+
+
+.new_comment_container{
+ display:none;
+
+}
 .success {
   color: green;
 }
 
-.clear{
-  clear:both;
-}
+
+.comment
+  {
+   width: 80%;
+   padding: 10px;
+   background: #666;
+   color: #fff;
+   font: normal 12px "Segoe UI", Arial, Sans-serif;
+   -moz-border-radius: 10px;
+   -webkit-border-radius: 10px;
+   border-radius: 10px;
+   margin-bottom:15px;
+  }
+
+  .comment:after
+  {
+   content: "";
+   border: solid 10px transparent; /* set all borders to 10 pixels width */
+   border-top-color: #666; /* the callout */
+   border-bottom: 0; /* we do not need the bottom border in this case */
+   width: 0;
+   height: 0;
+   overflow: hidden;
+   display: block;
+   position: relative;
+   bottom: -20px; /* border-width of the :after element + padding of the root element */
+   margin-left: 10em;
+  }
+
+

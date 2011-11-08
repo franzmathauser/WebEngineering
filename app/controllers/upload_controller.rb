@@ -1,6 +1,7 @@
 class UploadController < ApplicationController
+  require "mp3info"
   before_filter :require_login
-
+  
   def index
      #render :file => 'app\views\upload\uploadfile.rhtml'
   end
@@ -13,10 +14,22 @@ class UploadController < ApplicationController
     uploaded = Audio.new(:filehash=>file_name, :converted=>0, :imageprocessed=>0)
     @song = Song.new(:user=>current_user, :audio=>uploaded, :name=>file_name)
     @song.save
-
+    
     newname=uploaded.id.to_s+"."+file_ext
 
     @post = DataFile.save(params[:upload],newname)
+
+    
+    
+    Mp3Info.open(@post, :encoding => 'utf-8') do |mp3|
+      @song.title = mp3.tag.title if !mp3.tag.title.nil?
+      @song.artist = mp3.tag.artist if !mp3.tag.artist.nil?  
+      @song.album = mp3.tag.album if !mp3.tag.album.nil?
+      @song.duration = mp3.length if !mp3.length.nil?
+    end
+    
+    
+   
 
     md5sumHash = `md5sum #{@post}`
     filehash = md5sumHash[0..31]

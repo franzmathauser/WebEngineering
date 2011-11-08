@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-   has_many :songs
-   has_many :song_comments
+   has_many :songs, :dependent => :delete_all
+   has_many :song_comments, :dependent => :delete_all
   
    attr_accessor :password
    attr_accessible :nickname, :email, :password, :password_confirmation

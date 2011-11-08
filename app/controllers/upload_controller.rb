@@ -12,10 +12,13 @@ class UploadController < ApplicationController
     file_ext = file_name.downcase[-3,3]
 
     uploaded = Audio.new(:filehash=>file_name, :converted=>0, :imageprocessed=>0)
+    uploaded.save
     @song = Song.new(:user=>current_user, :audio=>uploaded, :name=>file_name)
     @song.save
     
     newname=uploaded.id.to_s+"."+file_ext
+    
+    puts "newname: " + newname
 
     @post = DataFile.save(params[:upload],newname)
 
@@ -26,6 +29,9 @@ class UploadController < ApplicationController
       @song.artist = mp3.tag.artist if !mp3.tag.artist.nil?  
       @song.album = mp3.tag.album if !mp3.tag.album.nil?
       @song.duration = mp3.length if !mp3.length.nil?
+      @song.year = mp3.tag.year if !mp3.tag.year.nil?
+      @song.tracknum = mp3.tag.tracknum if !mp3.tag.tracknum.nil?
+      @song.save
     end
     
     

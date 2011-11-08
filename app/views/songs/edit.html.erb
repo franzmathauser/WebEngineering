@@ -1,8 +1,9 @@
 <h1>Song Metadata</h1>
 
 <%= form_for(@song) do |f| %>
+ <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :filename %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
@@ -17,9 +18,18 @@
     <%= f.label :album %><br />
     <%= f.text_field :album %>
   </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :tracknumber %><br />
+    <%= f.text_field :tracknum %>
+  </div>
   
   <div class="actions">
     <%= f.submit "Save" %>
   </div>
+  
 <% end %>
 

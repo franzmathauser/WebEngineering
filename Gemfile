@@ -11,6 +11,8 @@ gem 'rack', '1.3.3'
 
 gem 'rmagick'
 
+gem 'ruby-mp3info'
+
 gem 'annotate',:git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
 
 

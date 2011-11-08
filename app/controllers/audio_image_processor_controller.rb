@@ -2,11 +2,12 @@ class AudioImageProcessorController < ApplicationController
   require 'RMagick'
   
   def image_processor
-    @audios = Audio.where(:imageprocessed=>false)
+    @audios = Audio.where(:converted=>true, :imageprocessed=>false)
 
     @audios.each do |result|
+    
        @audio = result
-	generate_image
+	     generate_image
     end
 
     render :text=>"processed " + @audios.length.to_s + " images"
@@ -14,6 +15,8 @@ class AudioImageProcessorController < ApplicationController
 
 
   def generate_image
+    
+   tmp_directory = "audiotmp"
 
    @accuracy=50
    @width=650
@@ -21,8 +24,18 @@ class AudioImageProcessorController < ApplicationController
 
    gc = Magick::Draw.new
    gc.stroke('#efefef')
+  
+    wavFile = tmp_directory+'/dec_'+@audio.id.to_s+".wav"
+    
+    puts 'wavefile: ' + wavFile
+    
+    if !File.exists?(wavFile) 
+      @audio.converted = false;
+      @audio.save
+      return
+    end
 
-    file = File.new('public/data/dec_'+@audio.id.to_s+".wav","r")
+    file = File.new(wavFile,"r")
     @header = []
     @header[0] = file.read(4)
     @header[1] = file.read(4).unpack('H*').first

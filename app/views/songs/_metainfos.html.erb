@@ -8,5 +8,11 @@
   <% if !@song.album.nil? && !@song.album.empty? %>
     <div class="metainfo">Album: <%= @song.album %></div>
   <% end %>
+   <% if !@song.year.nil? %>
+    <div class="metainfo">Year: <%= @song.year %></div>
+  <% end %>
+   <% if !@song.tracknum.nil? %>
+    <div class="metainfo">Tracknumber: <%= @song.tracknum %></div>
+  <% end %>
   <div class="clear"></div>
 </div>

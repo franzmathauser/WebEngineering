@@ -6,4 +6,5 @@ tmp/
 app/assets/audio/*.mp3
 app/assets/audioimages/*.png
 public/data/*.wav
-
+.redcar
+audiotmp/*.wav

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
    has_many :song_comments
   
    attr_accessor :password
-  attr_accessible :nickname, :email, :password, :password_confirmation
+   attr_accessible :nickname, :email, :password, :password_confirmation
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

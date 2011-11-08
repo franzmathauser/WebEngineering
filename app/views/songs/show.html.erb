@@ -68,9 +68,9 @@ function renderCanvasMonitor () {
        
       if (audioElement.currentTime >= parseFloat($(this).attr('from')) &&
           audioElement.currentTime <= parseFloat($(this).attr('to')) ){
-            $(this).css('background-color','#29F716');
+            $(this).css('color','#29F716');
       } else {
-         $(this).css('background-color','');
+         $(this).css('color','#ffffff');
       }
 
       });

@@ -12,18 +12,20 @@
       
     <%= render 'layouts/header' %>
     <% if signed_in? %>
+      <%= render 'layouts/player' %>
       <%= render 'layouts/menu' %>
       <%#= render 'layouts/actualPlaylist' %>
     <% end %>
    
 
     <section class="span-20 round-right">
-
-        <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
-        <% end %>
-
-        <%= yield %>
+        <div class ="main">
+          <% flash.each do |key, value| %>
+            <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
+  
+          <%= yield %>
+        </div>
 
     </section>
 

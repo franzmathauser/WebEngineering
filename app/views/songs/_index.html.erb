@@ -1,0 +1,11 @@
+<h1>Your Songlist</h1>
+<%
+@songs.each do |song|
+%>
+
+<%=link_to song.name, song %> <br />
+
+
+<%
+end
+%>

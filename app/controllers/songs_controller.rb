@@ -7,6 +7,10 @@ class SongsController < ApplicationController
     current_user.songs.each do |song|
       @songs << song
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -16,6 +20,10 @@ class SongsController < ApplicationController
      @audio = @song.audio
      @audio_path = @audio.id.to_s+".mp3"
      @audioimage_path = @audio.id.to_s+".png"
+     respond_to do |format|
+       format.html
+       format.js
+     end
   end
 
   def edit

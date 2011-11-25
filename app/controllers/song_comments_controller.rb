@@ -3,6 +3,7 @@ class SongCommentsController < ApplicationController
 
   def new 
     @song = Song.find(params[:song_id])
+    render :partial => "form"
   end
 
   def create

@@ -19,7 +19,7 @@ class AudioImageProcessorController < ApplicationController
    tmp_directory = "audiotmp"
 
    @accuracy=50
-   @width=650
+   @width=950
    @height=100
 
    gc = Magick::Draw.new

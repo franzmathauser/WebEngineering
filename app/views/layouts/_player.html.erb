@@ -1,20 +1,173 @@
-<div class="player">
-<audio id="audioplayer" controls  preload style="width:650px;">
+<div style="border:1px solid; width:100%; height:165px;padding-top:5px; background-color:#efefef;" class="round">
+<audio id="audioplayer" controls  preload style="width:100%;">
   <source src="<%=asset_path @audio_path%>" type="audio/mp3" />
   Your browser does not support the audio element.
 </audio>
-<% unless @audio.nil? %>
-<div id="audioimagecontainer" class="round" style="position: relative;">
- <canvas id="layer1" width="0%" height="100" 
-   style="position: absolute; left: 0; top: 0; z-index: 1; background-color:red"></canvas>
- <canvas id="layer2" width="650" height="100" 
-   style="position: absolute; left: 0; top: 0; z-index: 0; background-color:#aaaaaa"></canvas>
 
-<canvas id="layer2" width="650" height="100" 
-   style="position: absolute; left: 0; top: 0; z-index: 3; background-image:url('<%= audioimage %>')"></canvas>
+<div id="audioimagecontainer" class="round" style="width:100%; position: relative;">
 
-<canvas id="layer3"
-   style="position: absolute; left: 0; top: 0; z-index: 2; width:0px; height:100px; background-color:#29F716; opacity:0.4;"></canvas>
+<!-- background -->
+<div id="layer2" 
+   style="width:100%; height:100px;  position: absolute; left: 0; top: 0; z-index: 0; background-color:#aaaaaa"></div>
+
+<!-- fortschritt -->
+ <div id="layer1"
+   style="height:100px; position: absolute; left: 0; top: 0; z-index: 1; background-color:red"></div>
+ 
+<!-- marker -->
+<div id="layer3"
+   style="position: absolute; left: 0; top: 0; z-index: 2; width:0px; height:100px; background-color:#29F716; opacity:0.4;"></div>
+
+<!-- comment marker -->
+<div id="layer4"
+   style="position: absolute; left: 0; top: 0; z-index: 3; width:0px; height:100px; background-color:#0000FF; opacity:0.4;"></div>
+
+<!-- wavemask -->
+<div id="layer2"
+   style="width:100%; height:100px; position: absolute; left: 0; top: 0; z-index: 4;">
+   <%= image_tag audioimage , :style=>"width:100%; height:100%; cursor:pointer" %>
 </div>
-<% end %>
+
+<!-- metainfos -->
+<div style="position: absolute; left: 0; top: 100px; z-index: 5;">
+<%= render 'songs/metainfos' %>
 </div>
+
+</div>
+
+</div>
+
+
+<script language="Javascript">
+var audioElement = document.getElementById('audioplayer')
+var out = document.getElementById('out');
+var canvasTime = $("#layer1")
+var audioimagecontainer = document.getElementById('audioimagecontainer');
+var aicWidth = $("#audioimagecontainer").width();
+
+
+setInterval("renderCanvasMonitor()", 500);
+mem_currentTime = 0;
+var i = 0;
+function renderCanvasMonitor () {
+
+    if(mem_currentTime != audioElement.currentTime){
+      mem_currentTime = audioElement.currentTime;
+      audioLength = audioElement.duration;
+      proz = (audioElement.currentTime/audioLength) + 0.002;
+      canvas_size = aicWidth * proz;
+      canvasTime.width(canvas_size);
+    
+      $(".comment").each(function(index) {
+       
+      if (audioElement.currentTime >= parseFloat($(this).attr('from')) &&
+          audioElement.currentTime <= parseFloat($(this).attr('to')) ){
+            $(this).css('color','#29F716');
+      } else {
+         $(this).css('color','#ffffff');
+      }
+
+      });
+    }
+}
+
+
+</script>
+
+<script type="text/javascript">
+var from = 0;
+$("#audioimagecontainer").mousedown(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  from = mouseX/aicWidth
+  $('#song_comment_from_duration').val(Math.round(audioElement.duration*from*100)/100);
+  $('#layer3').css('margin-left',aicWidth*from);
+  $('#layer3').css('width',1);
+
+  $("#audioimagecontainer").mousemove(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var to = mouseX/aicWidth
+  diff = to-from
+  $('#layer3').css('width',aicWidth*diff);
+  });
+
+});
+
+
+$("#audioimagecontainer").mouseup(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var to = mouseX/aicWidth
+  diff = to-from
+  $('#song_comment_to_duration').val(Math.round(audioElement.duration*to*100)/100);
+  $('#layer3').css('width',aicWidth*diff);
+
+  $("#audioimagecontainer").unbind('mousemove');
+
+  if(from == to)
+  {
+     audioElement.currentTime = to*audioElement.duration;
+  }else{
+
+	$.facebox({  
+        	loadingImage : '/assets/loading.gif',  
+        	closeImage   : '/assets/closelabel.png',
+		ajax: '<%= new_song_song_comment_path(@song)%>'
+	}); 
+  }
+      
+});
+
+$(".comment").mouseover(function(e){
+
+  from = parseFloat($(this).attr('from'));
+  to = parseFloat($(this).attr('to'));
+
+  left = Math.round(from/audioElement.duration*100)/100*aicWidth
+  right = Math.round(to/audioElement.duration*100)/100*aicWidth
+  diff = right-left;
+  $('#layer4').css('margin-left',Math.round(left));
+  $('#layer4').css('width',Math.round(diff));
+  
+});
+
+$(".comment").mouseout(function(e){
+
+  
+  $('#layer4').css('margin-left',0);
+  $('#layer4').css('width',0);
+  
+});
+
+
+</script>
+
+<!-- Comment Box -->
+<script type="text/javascript">
+$(document).ready(function() {  
+      
+    $(document).bind('reveal.facebox', function() {  
+        $('#new_song_comment').submit(function() {  
+            $.post(this.action, $(this).serialize(), null, "script");  
+            $.facebox.close();
+	    $("#layer3").width(0);
+            return false;  
+        });
+	    
+    });  
+
+    /*
+    reload_image = $('#layer2 img');
+    var intId = setInterval(reloadImage,5000);
+    function reloadImage(){
+      if("/assets/std_audioimage.png" == reload_image.attr('src') ){
+	reload_image.attr('src','<%= audioimage %>');
+      }else{
+	clearInterval(intId);  
+      }
+    }
+    */
+
+    
+   
+    
+}); 
+</script>

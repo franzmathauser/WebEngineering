@@ -1,12 +1,3 @@
-<h1>Your Songlist</h1>
-<%
-@songs.each do |song|
-%>
+<%= render 'songs/index' %>
 
-<%=link_to song.name, song %> <br />
-
-
-<%
-end
-%>
 

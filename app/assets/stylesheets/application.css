@@ -51,7 +51,7 @@ a:hover {
 .player {
     margin:auto;
     border:1px solid;
-    height:10em;
+    height:12.3em;
     padding-top:0.1em;
     background-color:#efefef;
 }
@@ -220,4 +220,11 @@ input[type="submit"]:hover{
 
 input[type="submit"]:active{
   position:relative;top:2px;
+}
+
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  /* this will work for QtWebKit in future */
+  -webkit-user-drag: none;
 }

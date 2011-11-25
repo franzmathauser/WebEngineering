@@ -4,7 +4,10 @@
   <title>WaveCloud</title>
   <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "facebox" %>
   <%= csrf_meta_tags %>
+
+
 </head>
 <body>
 
@@ -12,18 +15,21 @@
       
     <%= render 'layouts/header' %>
     <% if signed_in? %>
+      <% if !@song.nil? %>
+      <%= render 'layouts/player' %>
+      <% end %>
       <%= render 'layouts/menu' %>
       <%#= render 'layouts/actualPlaylist' %>
     <% end %>
    
-
     <section class="span-20 round-right">
-
-        <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
-        <% end %>
-
-        <%= yield %>
+        <div class ="main">
+          <% flash.each do |key, value| %>
+            <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
+  
+          <%= yield %>
+        </div>
 
     </section>
 
@@ -38,6 +44,9 @@
     <%= debug(params) if Rails.env.development? %>
 
   </div>
+
+
+
 
 </body>
 </html>

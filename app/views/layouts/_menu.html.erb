@@ -1,9 +1,13 @@
 <div class="usermenu span-3 round-left">
   <ul>Menu
 
-    <li><%= link_to "+ Audio", upload_path %></li>
-    <li><%= link_to "Audioliste", :songs %></li>
-    <li><%= link_to "Profile", current_user %></li>
+    <% unless @song.nil? %>
+      <li><%= link_to @song.name, @song, :remote => true%></li>
+    <% end %>
+
+    <li><%= link_to "+ Audio", upload_path, :remote => true %></li>
+    <li><%= link_to "Audioliste", :songs, :remote => true %></li>
+    <li><%= link_to "Profile", current_user, :remote => true%></li>
 
     <li>Playlist1</li>
     <li>Playlist2</li>

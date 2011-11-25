@@ -4,6 +4,10 @@ class UploadController < ApplicationController
   
   def index
      #render :file => 'app\views\upload\uploadfile.rhtml'
+     respond_to do |format|
+       format.html
+       format.js
+     end
   end
 
   def uploadFile

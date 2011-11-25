@@ -1,8 +1,9 @@
 <%= form_for([@song, @song.song_comments.build]) do |f| %>
   
-
-    <%= f.hidden_field :from_duration %>
-    <%= f.hidden_field :to_duration %>
+    <%= render 'shared/error_messages', :object => f.object %>
+    
+    <%= f.text_field :from_duration %>
+    <%= f.text_field :to_duration %>
 
   <div class="field">
     <%= f.label :body %><br />
@@ -12,3 +13,15 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+var sel= $('#layer3');
+var mL = parseInt(sel.css('margin-left').slice(0,-2));
+var w = sel.width();
+
+from = Math.round(mL/aicWidth*audioElement.duration*100)/100;
+to = Math.round((mL+w)/aicWidth*audioElement.duration*100)/100;
+
+$('#song_comment_from_duration').val(from);
+$('#song_comment_to_duration').val(to);
+</script>

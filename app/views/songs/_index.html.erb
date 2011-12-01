@@ -1,11 +1,68 @@
 <h1>Your Songlist</h1>
-<%
-@songs.each do |song|
-%>
 
-<%=link_to song.name, song %> <br />
+<input id="search" type="text"/>
 
+<div class="songlist">
+<table>
+  <tr>
+    <th>
+      Songname
+    </th>
+    <th>
+      Artist
+    </th>
+    <th>
+      Album
+    </th>
+  </tr>
+    <%
+    @songs.sort_by { |a| [a.artist, a.album, a.tracknum, a.title]
+                 }.each do |song|
+    %>
+    <tr class="songrow">
+      <td>
+        <% unless song.title.nil?%>
+          <%=link_to song.title, song %>
+        <% else %>
+          <%=link_to song.name, song %>
+        <% end %>
+      </td>
+      <td>
+        <% unless song.artist.nil? %>
+          <%= song.artist %>
+        <%end%>
+      </td>
+      <td>
+        <% unless song.album.nil? %>
+          <%= song.album %>
+        <%end%>
+    </tr>
+    <%
+    end
+    %>
 
-<%
-end
-%>
+</table>
+</div>
+
+<script type="text/javascript">
+  
+  $('#search').keyup(function()
+  {
+    var searchString = $(this).val().toLowerCase();
+    $('.songlist table .songrow').each(function()
+    {
+      var item = "";
+      var counter = 0;
+      $(this).children().each(function()
+      {
+        item = item + $(this).text();
+      });
+      item = item.toLowerCase();
+      if(item.match(searchString))
+        $(this).show();
+      else
+        $(this).hide();
+
+    });
+  });
+</script>

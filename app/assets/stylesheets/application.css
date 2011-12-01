@@ -228,3 +228,9 @@ img {
   /* this will work for QtWebKit in future */
   -webkit-user-drag: none;
 }
+
+.songlist {
+  overflow: auto;
+  height: 25em;
+}
+

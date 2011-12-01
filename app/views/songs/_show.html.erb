@@ -1,4 +1,6 @@
 <% if @song.song_comments.length > 0 then %>
 <h2>Comments</h2>
 <%= render @song.song_comments %>
+<% else %>
+no comments
 <% end %>

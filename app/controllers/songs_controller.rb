@@ -45,6 +45,19 @@ class SongsController < ApplicationController
     flash[:notice] = 'Song was successfully deleted.'
     redirect_to(songs_url)
   end
+  
+  def play
+    path=""
+     @song = Song.where(:user_id=>current_user, :id=>params[:id]).first
+
+     @audio = @song.audio
+     @audio_path = @audio.id.to_s+".mp3"
+     @audioimage_path = @audio.id.to_s+".png"
+     respond_to do |format|
+       format.html
+       format.js
+     end
+  end
 
 
 end

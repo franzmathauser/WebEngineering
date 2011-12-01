@@ -9,7 +9,7 @@ WaveCloud::Application.routes.draw do
 
   get "audio/index"
   get "audio/new"
-
+  get "songs/play"
   root :to => 'sessions#new'
   
   resources :users
@@ -21,7 +21,6 @@ WaveCloud::Application.routes.draw do
   match '/signup', :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-
   match "upload", :to => 'upload#index'
   post "upload/uploadFile"
 

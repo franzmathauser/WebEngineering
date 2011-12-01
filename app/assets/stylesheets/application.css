@@ -47,15 +47,6 @@ a:hover {
   text-decoration: underline;
 }
 
-
-.player {
-    margin:auto;
-    border:1px solid;
-    height:12.3em;
-    padding-top:0.1em;
-    background-color:#efefef;
-}
-
 /* Navigation */
 
 nav {

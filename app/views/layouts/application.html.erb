@@ -15,15 +15,19 @@
       
     <%= render 'layouts/header' %>
     <% if signed_in? %>
+    <div id="player">
       <% if !@song.nil? %>
-      <%= render 'layouts/player' %>
+      <%= render 'layouts/player' %>   
       <% end %>
+    </div>
+    <div id="menu">
       <%= render 'layouts/menu' %>
+    </div>
       <%#= render 'layouts/actualPlaylist' %>
     <% end %>
    
     <section class="span-20 round-right">
-        <div class ="main">
+        <div id ="main">
           <% flash.each do |key, value| %>
             <div class="flash <%= key %>"><%= value %></div>
           <% end %>

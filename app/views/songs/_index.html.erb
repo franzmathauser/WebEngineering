@@ -22,7 +22,8 @@
     <tr class="songrow">
       <td>
         <% unless song.title.nil?%>
-          <%=link_to song.title, song %>
+          <%#=link_to song.title, song%>
+          <%= link_to song.title, {:controller => "songs", :action => "play", :id => song}, :remote => true%>
         <% else %>
           <%=link_to song.name, song %>
         <% end %>
@@ -36,6 +37,10 @@
         <% unless song.album.nil? %>
           <%= song.album %>
         <%end%>
+      </td>
+      <td>
+        <%= link_to 'comments', song, :remote => true %>
+      </td>
     </tr>
     <%
     end

@@ -8,7 +8,7 @@ class SongCommentsController < ApplicationController
 
   def create
     @song = Song.find(params[:song_id])
-    params[:song_comment][:user_id] = current_user
+    params[:song_comment][:user_id] = current_user.id
     @songcomment = @song.song_comments.create(params[:song_comment])
     redirect_to @song
   end

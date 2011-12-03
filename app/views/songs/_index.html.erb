@@ -1,4 +1,11 @@
-<h1>Your Songlist</h1>
+<h1>
+  <% if @user == current_user %>
+    My
+  <% else %>
+      <%= @user.nickname + "'s " %>
+  <% end %>
+  Songlist
+</h1>
 
 <input id="search" type="text"/>
 

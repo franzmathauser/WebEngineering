@@ -1,6 +1,15 @@
+
+<h2>
+    Comments
+    <% if @song.title.nil? %>
+        <%= "for " + @song.name %>
+    <% else %>
+        <%= "for " + @song.title %>
+    <% end %>
+</h2>
+<%= link_to "back to Songlist", {:controller => "songs", :action => "showUsersSongs", :id => @user.id}, :remote => true %>
 <% if @song.song_comments.length > 0 then %>
-<h2>Comments</h2>
-<%= render @song.song_comments %>
+    <%= render @song.song_comments %>
 <% else %>
-no comments
+    <br/>no comments
 <% end %>

@@ -10,6 +10,7 @@ WaveCloud::Application.routes.draw do
   get "audio/index"
   get "audio/new"
   get "songs/play"
+  get "songs/showUsersSongs"
   root :to => 'sessions#new'
   
   resources :users

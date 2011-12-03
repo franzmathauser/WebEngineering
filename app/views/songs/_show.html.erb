@@ -1,4 +1,42 @@
+<h2>
+    Comments
+    <% if @song.title.nil? %>
+        <%= "for " + @song.name %>
+    <% else %>
+        <%= "for " + @song.title %>
+    <% end %>
+</h2>
+<%= link_to "back to Songlist", {:controller => "songs", :action => "showUsersSongs", :id => @user.id}, :remote => true %>
 <% if @song.song_comments.length > 0 then %>
-<h2>Comments</h2>
-<%= render @song.song_comments %>
+    <%= render @song.song_comments %>
+<% else %>
+    <br/>no comments
 <% end %>
+
+<script language="Javascript">
+$(document).ready(function() {  
+if ($("#audioplayer").attr('songid') == <%=@song.id%>) {
+
+$(".comment").mouseover(function(e){
+  from = parseFloat($(this).attr('from'));
+  to = parseFloat($(this).attr('to'));
+  left = Math.round(from/audioElement.duration*100)/100*aicWidth
+  right = Math.round(to/audioElement.duration*100)/100*aicWidth
+  diff = right-left;
+  $('#layer4').css('margin-left',Math.round(left));
+  $('#layer4').css('width',Math.round(diff));
+  
+});
+
+$(".comment").mouseout(function(e){
+
+  
+  $('#layer4').css('margin-left',0);
+  $('#layer4').css('width',0);
+  
+});
+}
+});
+
+</script>
+

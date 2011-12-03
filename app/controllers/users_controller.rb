@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   
   before_filter :require_login, :only => [:edit, :update]
   def index
-    @user = current_user;
-    redirect_to @user;
+    @users = User.all
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end  
 
   def new

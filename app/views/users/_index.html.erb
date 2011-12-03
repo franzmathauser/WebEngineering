@@ -1,0 +1,28 @@
+<div class="userlist">
+<table>
+  <tr>
+    <th>
+      Nickname
+    </th>
+    <th>
+      Email
+    </th>
+  </tr>
+    <%
+    @users.sort_by { |a| [a.nickname, a.email]
+                 }.each do |user|
+    %>
+    <tr class="songrow">
+      <td>
+          <%= link_to user.nickname, {:controller => "users", :action => "show", :id => user.id}, :remote => true%>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+    </tr>
+    <%
+    end
+    %>
+
+</table>
+</div>

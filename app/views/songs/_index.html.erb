@@ -1,11 +1,86 @@
-<h1>Your Songlist</h1>
-<%
-@songs.each do |song|
-%>
+<h1>
+  <% if @user == current_user %>
+    My
+  <% else %>
+      <%= @user.nickname + "'s " %>
+  <% end %>
+  Songlist
+</h1>
 
-<%=link_to song.name, song %> <br />
+<input id="search" type="text"/>
 
+<div class="songlist">
+<table>
+  <tr>
+    <th>
+      Songname
+    </th>
+    <th>
+      Artist
+    </th>
+    <th>
+      Album
+    </th>
+  </tr>
+    <%
+    @songs.each do |song|
+      song.title = "unknown title" if song.title.nil?
+      song.artist = "unknown artist" if song.artist.nil?
+      song.album = "unknown album" if song.album.nil?
+      song.tracknum = "" if song.tracknum.nil?
+    end
+    @songs.sort_by { |a| [a.artist, a.album, a.tracknum, a.title]
+                 }.each do |song|
+    %>
+    <tr class="songrow">
+      <td>
+        <% unless song.title.nil?%>
+          <%#=link_to song.title, song%>
+          <%= link_to song.title, {:controller => "songs", :action => "play", :id => song}, :remote => true%>
+        <% else %>
+          <%=link_to song.name, song %>
+        <% end %>
+      </td>
+      <td>
+        <% unless song.artist.nil? %>
+          <%= song.artist %>
+        <%end%>
+      </td>
+      <td>
+        <% unless song.album.nil? %>
+          <%= song.album %>
+        <%end%>
+      </td>
+      <td>
+        <%= link_to 'comments', song, :remote => true %>
+      </td>
+    </tr>
+    <%
+    end
+    %>
 
-<%
-end
-%>
+</table>
+</div>
+
+<script type="text/javascript">
+  
+  $('#search').keyup(function()
+  {
+    var searchString = $(this).val().toLowerCase();
+    $('.songlist table .songrow').each(function()
+    {
+      var item = "";
+      var counter = 0;
+      $(this).children().each(function()
+      {
+        item = item + $(this).text();
+      });
+      item = item.toLowerCase();
+      if(item.match(searchString))
+        $(this).show();
+      else
+        $(this).hide();
+
+    });
+  });
+</script>

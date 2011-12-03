@@ -1,3 +1,35 @@
-<h1>Audioplayer <%= @song.name %></h1>
+
+<script type="text/javascript">
+$(document).ready(function() {  
+reload_image = $('#layer2 img');
+var reloadCount = 0;
+    if("/assets/std_audioimage.png" == reload_image.attr('src').toString()){
+
+      var intId<%=@song.id%> = setInterval(reloadImage,3000);
+      $('#layer6 img').show();
+
+      function reloadImage(){
+        
+        if (reloadCount++ > 10 ){
+          clearInterval(intId<%=@song.id%>);
+	  $('#layer6 img').hide();
+	}
+ 
+        $.ajax({
+          url: "/songs/<%=@song.id%>/audioimage",
+          context: document.body,
+          success: function(data){
+            if("std_audioimage.png" != data.toString() ){
+     	      reload_image.attr('src','/assets/'+data);
+	      clearInterval(intId<%=@song.id%>);
+	      $('#layer6 img').hide();
+            }
+          }
+        });
+   
+      }
+    }
+});
+</script>
 
 <%= render 'songs/show' %>

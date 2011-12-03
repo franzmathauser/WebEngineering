@@ -1,14 +1,10 @@
 <div class="usermenu span-3 round-left">
   <ul>Menu
 
-    <% unless @song.nil? %>
-      <li><%= link_to @song.name, @song, :remote => true%></li>
-    <% end %>
-
     <li><%= link_to "+ Audio", upload_path, :remote => true %></li>
-    <li><%= link_to "Audioliste", :songs, :remote => true %></li>
-    <li><%= link_to "Profile", current_user, :remote => true%></li>
-
+    <li><%= link_to "My Audios", {:controller => "songs", :action => "showUsersSongs", :id => current_user.id}, :remote => true %></li>
+    <li><%= link_to "My Profile", current_user, :remote => true%></li>
+    <li><%= link_to "Other Users", users_path, :remote => true%></li>
     <li>Playlist1</li>
     <li>Playlist2</li>
     <li>...</li>

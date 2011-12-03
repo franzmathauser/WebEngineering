@@ -1,38 +1,38 @@
-<div style="border:1px solid; width:100%; height:165px;padding-top:5px; background-color:#efefef;" class="round">
-<audio id="audioplayer" controls  preload style="width:100%;">
+<div id="playerContainer" class="round">
+<audio id="audioplayer" controls  preload songid="<%=@song.id%>">
   <source src="<%=asset_path @audio_path%>" type="audio/mp3" />
   Your browser does not support the audio element.
 </audio>
 
-<div id="audioimagecontainer" class="round" style="width:100%; position: relative;">
+<div id="audioimagecontainer" class="round" style="">
 
 <!-- background -->
-<div id="layer2" 
-   style="width:100%; height:100px;  position: absolute; left: 0; top: 0; z-index: 0; background-color:#aaaaaa"></div>
+<div id="layer5"></div>
 
 <!-- fortschritt -->
- <div id="layer1"
-   style="height:100px; position: absolute; left: 0; top: 0; z-index: 1; background-color:red"></div>
+<div id="layer1"></div>
  
 <!-- marker -->
-<div id="layer3"
-   style="position: absolute; left: 0; top: 0; z-index: 2; width:0px; height:100px; background-color:#29F716; opacity:0.4;"></div>
+<div id="layer3"></div>
 
 <!-- comment marker -->
-<div id="layer4"
-   style="position: absolute; left: 0; top: 0; z-index: 3; width:0px; height:100px; background-color:#0000FF; opacity:0.4;"></div>
+<div id="layer4"></div>
 
 <!-- wavemask -->
-<div id="layer2"
-   style="width:100%; height:100px; position: absolute; left: 0; top: 0; z-index: 4;">
-   <%= image_tag audioimage , :style=>"width:100%; height:100%; cursor:pointer" %>
+<div id="layer2">
+   <%= image_tag @audioimage_path %>
+</div>
+
+<!-- loader -->
+<div id="layer6">
+   <%= image_tag "loading.gif" %>
+</div>
+
 </div>
 
 <!-- metainfos -->
-<div style="position: absolute; left: 0; top: 100px; z-index: 5;">
+<div class="metainfos">
 <%= render 'songs/metainfos' %>
-</div>
-
 </div>
 
 </div>
@@ -116,28 +116,6 @@ $("#audioimagecontainer").mouseup(function(e){
       
 });
 
-$(".comment").mouseover(function(e){
-
-  from = parseFloat($(this).attr('from'));
-  to = parseFloat($(this).attr('to'));
-
-  left = Math.round(from/audioElement.duration*100)/100*aicWidth
-  right = Math.round(to/audioElement.duration*100)/100*aicWidth
-  diff = right-left;
-  $('#layer4').css('margin-left',Math.round(left));
-  $('#layer4').css('width',Math.round(diff));
-  
-});
-
-$(".comment").mouseout(function(e){
-
-  
-  $('#layer4').css('margin-left',0);
-  $('#layer4').css('width',0);
-  
-});
-
-
 </script>
 
 <!-- Comment Box -->
@@ -152,21 +130,7 @@ $(document).ready(function() {
             return false;  
         });
 	    
-    });  
-
-    /*
-    reload_image = $('#layer2 img');
-    var intId = setInterval(reloadImage,5000);
-    function reloadImage(){
-      if("/assets/std_audioimage.png" == reload_image.attr('src') ){
-	reload_image.attr('src','<%= audioimage %>');
-      }else{
-	clearInterval(intId);  
-      }
-    }
-    */
-
-    
+    });   
    
     
 }); 

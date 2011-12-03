@@ -23,6 +23,12 @@
     </th>
   </tr>
     <%
+    @songs.each do |song|
+      song.title = "unknown title" if song.title.nil?
+      song.artist = "unknown artist" if song.artist.nil?
+      song.album = "unknown album" if song.album.nil?
+      song.tracknum = "" if song.tracknum.nil?
+    end
     @songs.sort_by { |a| [a.artist, a.album, a.tracknum, a.title]
                  }.each do |song|
     %>

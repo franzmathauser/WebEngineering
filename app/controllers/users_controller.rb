@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   before_filter :require_login, :only => [:edit, :update]
   def index
-    @users = User.all
+    @users = {}
     respond_to do |format|
       format.html
       format.js
@@ -50,4 +50,17 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  def filterUsers
+    if(params[:search] && params[:search].length >= 2)
+      @users = User.where('nickname LIKE ? OR email LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @users = {}
+    end
+    respond_to do |format|
+      format.html {render :partial => 'users/userList'}
+      format.js
+    end
+  end
+
 end

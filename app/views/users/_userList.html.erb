@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>
+      Nickname <%= @test %> 
+    </th>
+    <th>
+      Email
+    </th>
+  </tr>
+    <%
+    @users.sort_by { |a| [a.nickname, a.email]
+                 }.each do |user|
+    %>
+      <% unless user == current_user %>
+        <tr>
+          <td>
+              <%= link_to user.nickname, {:controller => "users", :action => "show", :id => user.id}, :remote => true%>
+          </td>
+          <td>
+            <%= user.email %>
+          </td>
+        </tr>
+      <% end %>
+    <%
+    end
+    %>
+
+</table>

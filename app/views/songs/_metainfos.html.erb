@@ -15,9 +15,11 @@
     <div class="metainfo">Tracknumber: <%= @song.tracknum %></div>
   <% end %>
 
-<%= link_to "Edit", :controller => "songs", :action => "edit", :id => @song %>
-<%= link_to 'Delete', song_path(@song),
-            :confirm => 'Are you sure?', :method => :delete %>
+<% if @song.user_id == current_user.id %>
+  <%= link_to "Edit", :controller => "songs", :action => "edit", :id => @song %>
+  <%= link_to 'Delete', song_path(@song),
+              :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
 <%= link_to "Show Comments", @song, :remote => true %>
 
 </div>

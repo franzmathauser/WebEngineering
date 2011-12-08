@@ -120,9 +120,9 @@ $("#audioimagecontainer").mouseup(function(e){
 
 <!-- Comment Box -->
 <script type="text/javascript">
-$(document).ready(function() {  
-      
-    $(document).bind('reveal.facebox', function() {  
+$(document).ready(function() {
+    $(document).unbind('reveal.facebox');
+    $(document).bind('reveal.facebox', function() {
         $('#new_song_comment').submit(function() {  
             $.post(this.action, $(this).serialize(), null, "script");  
             $.facebox.close();

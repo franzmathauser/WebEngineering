@@ -38,6 +38,10 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @title = "Edit user"
+    respond_to do |format|
+      format.html {render :partial => 'users/userList'}
+      format.js
+    end
   end
   
   def update

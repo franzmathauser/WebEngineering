@@ -55,8 +55,12 @@ class UsersController < ApplicationController
     end
   end
   
+  # Usually called via ajax (.js) on every keyup event in the search box for users
+  # located in views/users/_index.html.erb.
+  # The method filters all Users for the searchstring in params[:search]
+  # User name and email is regarded.
   def filterUsers
-    if(params[:search] && params[:search].length >= 2)
+    if(params[:search] && params[:search].length >= 1)
       @users = User.where('nickname LIKE ? OR email LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     else
       @users = {}

@@ -1,15 +1,11 @@
 <table>
   <tr>
-    <th>
-      Nickname <%= @test %> 
-    </th>
-    <th>
-      Email
-    </th>
+    <th>Nickname</th>
+    <th>Email</th>
   </tr>
     <%
-    @users.sort_by { |a| [a.nickname, a.email]
-                 }.each do |user|
+      @users.sort_by { |a| [a.nickname, a.email]
+                }.each do |user|
     %>
       <% unless user == current_user %>
         <tr>
@@ -21,8 +17,5 @@
           </td>
         </tr>
       <% end %>
-    <%
-    end
-    %>
-
+    <% end %>
 </table>

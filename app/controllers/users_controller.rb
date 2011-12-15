@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   before_filter :require_login, :only => [:edit, :update]
   def index
-    @users = User.all
+    @users = {}
     respond_to do |format|
       format.html
       format.js
@@ -38,6 +38,10 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @title = "Edit user"
+    respond_to do |format|
+      format.html {render :partial => 'users/userList'}
+      format.js
+    end
   end
   
   def update
@@ -50,4 +54,21 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  # Usually called via ajax (.js) on every keyup event in the search box for users
+  # located in views/users/_index.html.erb.
+  # The method filters all Users for the searchstring in params[:search]
+  # User name and email is regarded.
+  def filterUsers
+    if(params[:search] && params[:search].length >= 1)
+      @users = User.where('nickname LIKE ? OR email LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    else
+      @users = {}
+    end
+    respond_to do |format|
+      format.html {render :partial => 'users/userList'}
+      format.js
+    end
+  end
+
 end

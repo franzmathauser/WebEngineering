@@ -10,6 +10,7 @@ WaveCloud::Application.routes.draw do
   get "audio/index"
   get "audio/new"
   get "songs/play"
+  get "users/filterUsers"
   match "songs/:id/audioimage", :to => "songs#audioimage"
   get "songs/showUsersSongs"
   root :to => 'sessions#new'

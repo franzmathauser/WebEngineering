@@ -8,7 +8,9 @@
 </h2>
 <%= link_to "back to Songlist", {:controller => "songs", :action => "showUsersSongs", :id => @user.id}, :remote => true %>
 <% if @song.song_comments.length > 0 then %>
-    <%= render @song.song_comments %>
+    <div class="commentlist">
+        <%= render @song.song_comments %>
+    </div>
 <% else %>
     <br/>no comments
 <% end %>

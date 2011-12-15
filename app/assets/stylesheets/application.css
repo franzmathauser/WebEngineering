@@ -225,6 +225,16 @@ img {
   height: 25em;
 }
 
+.commentlist {
+  overflow: auto;
+  height: 25em;
+}
+
+.userlist {
+  overflow: auto;
+  height: 25em;
+}
+
 
 /*Player CSS*/
 

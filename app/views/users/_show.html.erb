@@ -6,6 +6,6 @@
 <li>Nickname: <%= @user.nickname %></li>
 <li>Email: <%= @user.email %></li>
 <% if @user.id == current_user.id %>
-<li><%= link_to "Edit", edit_user_path(current_user) %></li>
+<li><%= link_to "Edit", edit_user_path(current_user), :remote => true %></li>
 <% end %>
 <li><%= link_to(@user.nickname+"'s Songlist", {:controller => "songs", :action => "showUsersSongs", :id => @user.id}, :remote => true)%></li>

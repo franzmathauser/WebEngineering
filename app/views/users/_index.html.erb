@@ -1,28 +1,21 @@
-<div class="userlist">
-<table>
-  <tr>
-    <th>
-      Nickname
-    </th>
-    <th>
-      Email
-    </th>
-  </tr>
-    <%
-    @users.sort_by { |a| [a.nickname, a.email]
-                 }.each do |user|
-    %>
-    <tr class="songrow">
-      <td>
-          <%= link_to user.nickname, {:controller => "users", :action => "show", :id => user.id}, :remote => true%>
-      </td>
-      <td>
-        <%= user.email %>
-      </td>
-    </tr>
-    <%
-    end
-    %>
+<h1> Find Users </h1>
+  <%= form_tag users_filterUsers_path, :remote => true, :method => 'get', :id => "userSearch" do %>
+    <%= text_field_tag :search, params[:search] %>
+  <% end %>
 
-</table>
+<div id="userlist" class="userlist">
+  <%= render 'userList' %>
 </div>
+
+<!--
+  Script for doing an ajax-call on every keyup event
+  of the search field
+-->
+<script type="text/javascript">
+$(function(){
+    $("#userSearch input").keyup(function() {
+        $.get($("#userSearch").attr("action"), $("#userSearch").serialize(), null, "script");
+        return false;
+    });
+});
+</script>

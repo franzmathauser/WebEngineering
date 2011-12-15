@@ -6,6 +6,8 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
   
+  # Renders the Songlist of the User with id params[:id]
+  # Usually called by ajax
   def showUsersSongs
     @songs = Array.new
     @user = User.where(:id => params[:id]).first
@@ -18,6 +20,10 @@ class SongsController < ApplicationController
     end
   end
 
+ # An ajax call of this method only renders the comments for a Song (views/songs/show.js.erb).
+ # The Song id has to be in params[:id].
+ # If this method is called normal (views/songs/show.html.erb) the Player will be rendered
+ # as well with the given Song as source.
   def show
      path=""
      @song = Song.where(:id=>params[:id]).first
@@ -33,6 +39,10 @@ class SongsController < ApplicationController
 
   def edit
     @song = Song.find(params[:id])
+    respond_to do |format|
+       format.html
+       format.js
+     end
   end
 
   def update
@@ -50,11 +60,15 @@ class SongsController < ApplicationController
     flash[:notice] = 'Song was successfully deleted.'
     redirect_to(songs_url)
   end
-  
+ 
+ # An ajax call of this method only renders the player (views/songs/play.js.erb).
+ # The Song id has to be in params[:id]. Else there is no
+ # source file for the player
+ # If this method is called normal (views/songs/play.html.erb) the comments of
+ # the Song will be rendered as well.
   def play
     path=""
      @song = Song.where(:id=>params[:id]).first
-
      @audio = @song.audio
      @audio_path = @audio.id.to_s+".mp3"
      @audioimage_path = audioimagepath(@audio)

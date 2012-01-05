@@ -1,5 +1,6 @@
 <div class="usermenu span-3 round-left">
-  <ul>Menu
+  <ul>
+<li>Menu<li>
 
     <li><%= link_to "+ Audio", upload_path, :remote => true %></li>
     <li><%= link_to "My Audios", {:controller => "songs", :action => "showUsersSongs", :id => current_user.id}, :remote => true %></li>
